@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Banque_App
+namespace Banque_Temp
 {
     public class Client
     {
-        private string _CIN, _nom, _prenom,_adresse;
+        private string _CIN, _nom, _prenom, _adresse;
         private string _login, _password;
         private List<Compte> _comptes;
-        public Client(string cIN, string nom, string prenom,string addr)
+        public Client(string cIN, string nom, string prenom, string addr)
         {
             _CIN = cIN;
             _adresse = addr;
@@ -34,6 +31,10 @@ namespace Banque_App
         public override string ToString()
         {
             return "CIN =" + _CIN + " nom=" + _nom + " prenom=" + _prenom + " addresse=" + _adresse;
+        }
+        public bool auth(string login,string pass)
+        {
+            return login == _login && pass == _password; 
         }
     }
 }
