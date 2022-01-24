@@ -7,9 +7,9 @@ namespace Banque_Temp
     public class Compte
     {
         public int numCompte { get; }
-        public string Solde { get; }
+        public double Solde { get; }
 
-    public Compte(int numCompte, string solde)
+    public Compte(int numCompte, double solde)
         {
             this.numCompte = numCompte;
             Solde = solde;

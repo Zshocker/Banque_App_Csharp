@@ -31,7 +31,7 @@ namespace Banque_UI
                 reader1 = Select_com("select * from Compte where id_Client=" + client.id);
                 while (reader1.Read())
                 {
-                    client.add_Compte(new Compte(int.Parse(reader1["NumCompte"].ToString()), reader1["Solde"].ToString()));
+                    client.add_Compte(new Compte(int.Parse(reader1["NumCompte"].ToString()), double.Parse(reader1["Solde"].ToString())));
                 }
                 reader1.Close();
             }
