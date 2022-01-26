@@ -15,6 +15,11 @@ namespace Banque_App
             if (taux >= 0 && taux <= 100) _TauxInteret = taux;
             else throw new ArgumentOutOfRangeException();
         }
+        public CompteEpargne(int id,Client client, Devise solde ,double taux) : base(id,client, solde)
+        {
+            if (taux >= 0 && taux <= 100) _TauxInteret = taux;
+            else throw new ArgumentOutOfRangeException();
+        }
         public void calculInteret()
         {
             add_pursontage(_TauxInteret);

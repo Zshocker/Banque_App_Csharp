@@ -14,6 +14,10 @@ namespace Banque_App
         {
             _decouvert = decouvert;
         }
+        public CompteCourant(int id,Client client, Devise solde,Devise decouvert) : base(id,client, solde)
+        {
+            _decouvert = decouvert;
+        }
         public override bool debiter(Devise D)
         {
             if (!check_Solde_sup(D + _decouvert)) return false;

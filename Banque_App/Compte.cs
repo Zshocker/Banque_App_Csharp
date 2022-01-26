@@ -11,7 +11,7 @@ namespace Banque_App
     {
         static Devise plafond=new MAD(2000);
         static int count=0;
-        readonly int _numcompte = ++count;
+        int _numcompte = ++count;
         Client _client;
         Devise _solde;
         List<Transaction> _transactions;
@@ -31,6 +31,15 @@ namespace Banque_App
             _transactions = new List<Transaction>();
             _client.add_Compte(this);
         }
+        protected Compte(int id, Client client, Devise solde)
+        {
+            _numcompte = id;
+            this._client = client;
+            this._solde = solde;
+            _transactions = new List<Transaction>();
+            _client.add_Compte(this);
+        }
+        
         public virtual void crediter(Devise devise)
         {
             _solde += devise;
@@ -63,10 +72,11 @@ namespace Banque_App
             _solde -= _solde - M;
             Add_transaction(M, false);
         }
-        protected void Add_transaction(Devise Amount, bool Type)
+        protected void Add_transaction(Devise Amount, bool Type,bool Base_save=true)
         {
             if (Type) _transactions.Add(new OpV(Amount, this));
             else _transactions.Add(new OpR(Amount, this));
+            if (Base_save) App_Gest.Create_AppGest().save_Transaction_Tobase(Amount, Type, this._numcompte);
         }
 
         public override string ToString()

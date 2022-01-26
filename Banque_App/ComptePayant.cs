@@ -13,6 +13,10 @@ namespace Banque_App
         {
 
         }
+        public ComptePayant(int id,Client client, Devise solde, Devise decouvert) : base(id,client, solde, decouvert)
+        {
+
+        }
         public override void crediter(Devise devise)
         {
             base.crediter(devise);

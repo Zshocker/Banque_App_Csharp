@@ -10,7 +10,8 @@ namespace Banque_App
     {
         private string _CIN, _nom, _prenom,_adresse;
         private string _login, _password;
-        private List<Compte> _comptes;
+        public int id { get; }
+        public  List<Compte> _comptes { get; }
         public Client(string cIN, string nom, string prenom,string addr)
         {
             _CIN = cIN;
@@ -19,13 +20,15 @@ namespace Banque_App
             this._prenom = prenom;
             _comptes = new List<Compte>();
         }
-
-        public Client(string cIN, string nom, string prenom, string adresse, string login, string password) : this(cIN, nom, prenom, adresse)
+        private Client(string cIN, string nom, string prenom, string adresse, string login, string password) : this(cIN, nom, prenom, adresse)
         {
             _login = login;
             _password = password;
         }
-
+        public Client(int id,string cIN, string nom, string prenom, string adresse, string login, string password) : this(cIN, nom, prenom, adresse, login, password)
+        {
+            this.id = id;
+        }
         public void add_Compte(Compte se)
         {
             if (_comptes.Contains(se)) return;
@@ -34,6 +37,10 @@ namespace Banque_App
         public override string ToString()
         {
             return "CIN =" + _CIN + " nom=" + _nom + " prenom=" + _prenom + " addresse=" + _adresse;
+        }
+        public bool auth(string login, string pass)
+        {
+            return login == _login && pass == _password;
         }
     }
 }
