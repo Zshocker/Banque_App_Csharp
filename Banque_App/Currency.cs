@@ -10,7 +10,8 @@ namespace Money
     {
         static readonly double RatioToDollar= 1 / 9.24;
         static readonly double RatioToEuro = 1 / 10.4;
-        public MAD(double valeur) : base(valeur){} 
+        public MAD(double valeur) : base(valeur){}  
+        public MAD(int id,double valeur) : base(id,valeur){} 
         public MAD(MAD valeur) : base(valeur){}
         public override Devise Clone()
         {
@@ -37,7 +38,8 @@ namespace Money
     {
         static readonly  double RatioToDollar= 1.13;
         static readonly double RatioToMAD = 10.4;
-        public Euro(double valeur) : base(valeur) { }
+        public Euro(double valeur) : base(valeur) { } 
+        public Euro(int id,double valeur) : base(id,valeur) { }
         public Euro(Euro valeur) : base(valeur) { }
         public override Devise Clone()
         {
@@ -66,6 +68,7 @@ namespace Money
         static readonly double RatioToMAD = 9.24;
         static readonly double RatioToEuro = 1 / 1.13;
         public Dollar(double valeur) : base(valeur) { }
+        public Dollar(int id,double valeur) : base(id,valeur) { }
         public Dollar(Dollar valeur) : base(valeur) { }
         public override Devise Clone()
         {

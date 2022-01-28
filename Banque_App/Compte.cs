@@ -9,12 +9,12 @@ namespace Banque_App
 {
     public abstract class Compte
     {
-        static Devise plafond=new MAD(2000);
-        static int count=0;
-        int _numcompte = ++count;
+        static Devise plafond = new MAD(2000);
+        static int count = 0;
+        public int _numcompte { get; } = ++count;
         Client _client;
-        Devise _solde;
-        List<Transaction> _transactions;
+        public Devise _solde { get; private set; }
+        public List<Transaction> _transactions { get; private set; }
         public virtual bool debiter(Devise devise)
         {
             if(_solde>=devise && devise <= plafond)
@@ -33,6 +33,7 @@ namespace Banque_App
         }
         protected Compte(int id, Client client, Devise solde)
         {
+            if (id > count) count = id;
             _numcompte = id;
             this._client = client;
             this._solde = solde;
@@ -72,16 +73,28 @@ namespace Banque_App
             _solde -= _solde - M;
             Add_transaction(M, false);
         }
-        protected void Add_transaction(Devise Amount, bool Type,bool Base_save=true)
+        public void Add_transaction(Devise Amount, bool Type)
         {
-            if (Type) _transactions.Add(new OpV(Amount, this));
-            else _transactions.Add(new OpR(Amount, this));
-            if (Base_save) App_Gest.Create_AppGest().save_Transaction_Tobase(Amount, Type, this._numcompte);
+            Transaction transaction;
+            if (Type) transaction= new OpV(Amount, this);
+            else transaction= new OpR(Amount, this);
+            Banque_Controller.Create_AppGest().save_new_Transaction_Tobase(transaction);
+            Add_transaction(transaction);
+        }
+        public void Add_transaction(Transaction transaction)
+        {
+            _transactions.Add(transaction);
         }
 
         public override string ToString()
         {
-            return "numero du compte : " + _numcompte + ", Solde :" + _solde;
+            return "numero du compte : " + _numcompte +" , Type : "+Get_Type();
+        }
+        private String Get_Type()
+        {
+            if (this is ComptePayant) return "Compte Payant";
+            if (this is CompteEpargne) return "Compte Epargne";
+            return "Compte Courant";
         }
     }
 }

@@ -8,9 +8,10 @@ namespace Banque_App
 {
     public class Client
     {
+        private static int incr = 0;
         private string _CIN, _nom, _prenom,_adresse;
         private string _login, _password;
-        public int id { get; }
+        public int id { get; } = ++incr;
         public  List<Compte> _comptes { get; }
         public Client(string cIN, string nom, string prenom,string addr)
         {
@@ -27,6 +28,7 @@ namespace Banque_App
         }
         public Client(int id,string cIN, string nom, string prenom, string adresse, string login, string password) : this(cIN, nom, prenom, adresse, login, password)
         {
+            if (id > incr) incr = id;
             this.id = id;
         }
         public void add_Compte(Compte se)

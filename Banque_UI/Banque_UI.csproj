@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bunifu.Licensing, Version=3.2.0.0, Culture=neutral, PublicKeyToken=f89b4760ba7dcb6b" />
     <Reference Include="Bunifu.UI.WinForms.1.5.3">
       <HintPath>..\..\Bunifo\BunifuCrack\Bunifu.UI.WinForms.1.5.3.dll</HintPath>
     </Reference>
@@ -41,6 +42,9 @@
     </Reference>
     <Reference Include="Bunifu.UI.WinForms.BunifuCheckBox">
       <HintPath>..\..\Bunifo\BunifuCrack\Bunifu.UI.WinForms.BunifuCheckBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuDataGridView">
+      <HintPath>..\..\Bunifo\BunifuCrack\Bunifu.UI.WinForms.BunifuDataGridView.dll</HintPath>
     </Reference>
     <Reference Include="Bunifu.UI.WinForms.BunifuImageButton">
       <HintPath>..\..\Bunifo\BunifuCrack\Bunifu.UI.WinForms.BunifuImageButton.dll</HintPath>
@@ -70,10 +74,25 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Internal_App_Client.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Internal_App_Client.Designer.cs">
+      <DependentUpon>Internal_App_Client.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Versement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Versement.Designer.cs">
+      <DependentUpon>Versement.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Internal_App_Client.resx">
+      <DependentUpon>Internal_App_Client.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -85,6 +104,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Versement.resx">
+      <DependentUpon>Versement.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -102,10 +124,6 @@
     <ProjectReference Include="..\Banque_App\Banque_App.csproj">
       <Project>{817a15bf-d06c-449e-91e1-8844b225d715}</Project>
       <Name>Banque_App</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Banque_tempo\Banque_tempo.csproj">
-      <Project>{64c995a6-5c59-4448-8102-90de29aec83b}</Project>
-      <Name>Banque_tempo</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

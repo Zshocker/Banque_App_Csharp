@@ -9,16 +9,25 @@ namespace Banque_App
 {
     public abstract class Transaction
     {
-		static long incr=0;
-		readonly long _numT=++incr;
-		DateTime _date_heure;
-		Devise _Val;
-		Compte _compte;
+        public static string libel { get; }
+        static long incr=0;
+        public long _numT { get; } = ++incr;
+		public DateTime _date_heure { get; }
+		public Devise _Val { get; }
+		public Compte _compte { get; }
 		public Transaction(Devise Value,Compte compte)
         {
 			_Val = Value;
 			_compte=compte;
 			_date_heure = DateTime.Now;
+        }
+        public Transaction(int id, Devise Value, Compte compte ,string date)
+        {
+            if (id > incr) incr = id;
+            _numT = id;
+            _Val = Value;
+            _compte = compte;
+            _date_heure = DateTime.Parse(date);
         }
         protected string Details()
         {
@@ -31,8 +40,11 @@ namespace Banque_App
     }
     public class OpR : Transaction
     {
-        static string libel="-";
+        new public static string libel { get; } = "-";
         public OpR(Devise Value, Compte compte) : base(Value, compte)
+        {
+        } 
+        public OpR(int id,Devise Value, Compte compte ,string date) : base(id,Value, compte,date)
         {
         }
         public override string ToString()
@@ -42,8 +54,11 @@ namespace Banque_App
     }
     public class OpV : Transaction
     {
-        static string libel="+";
+        new public static string libel { get; } = "+";
         public OpV(Devise Value, Compte compte) : base(Value, compte)
+        {
+        } 
+        public OpV(int id,Devise Value, Compte compte, string date) : base(id,Value, compte, date)
         {
         }
         public override string ToString()

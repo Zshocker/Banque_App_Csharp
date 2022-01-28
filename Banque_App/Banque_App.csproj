@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Banque_Controller.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Compte.cs" />
     <Compile Include="CompteCourant.cs" />

@@ -8,14 +8,22 @@ namespace Money
 {
     public abstract class Devise
     {
-        double _valeur;
-
+        private static int incr = 0;
+        public double _valeur { get; private set; }
+        public int _id { get; private set; } = ++incr;
         public Devise(double valeur)
         {
             this._valeur = valeur;
         }
+        public Devise(int id,double valeur)
+        {
+            if (id > incr) incr = id;
+            this._id = id;
+            this._valeur = valeur;
+        }
         public Devise(Devise devise)
         {
+            _id = devise._id;
             this._valeur = devise._valeur;
         }
         public abstract Devise Clone();
