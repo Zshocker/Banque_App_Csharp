@@ -100,6 +100,18 @@ namespace Banque_App
             reader.Close();
             return compte;
         }
+        private int Read_old_Devise(int a)
+        {
+            SqlDataReader sqlr = Select_com("Select id_Solde from Compte where numCompte=" + a);
+            sqlr.Read();
+            int va= int.Parse(sqlr["id_Solde"].ToString());
+            sqlr.Close();
+            return va;
+        }
+        private void Delete_Devise(int a)
+        {
+            Delete_Com("DELETE From Devise where Id="+a);
+        }
         private Transaction Read_transaction_toCompte(Compte compte, SqlDataReader reader)
         {
             int type = int.Parse(reader["type"].ToString());
@@ -132,7 +144,7 @@ namespace Banque_App
         {
             int type = 1;
             if (transaction is OpR) type = 0;
-            update_Devise(transaction._compte._solde);
+            Update_Compte_Devise(transaction._compte);
             save_new_Devise(transaction._Val);
             Insert_Com("insert into Transactions values ("+transaction._numT+","+transaction._Val._id+","+transaction._compte._numcompte+","+type+", '"+transaction._date_heure.ToString()+"'    ) ");
         }
@@ -140,9 +152,16 @@ namespace Banque_App
         {
             Insert_Com("insert into Devise values(" + devise._id + "," + devise._valeur + " ," + get_Devise_type(devise) + " )");
         }
-        private void update_Devise(Devise devise)
+        //private void update_Devise(Devise devise)
+        //{
+        //    Update_Comm("Update Devise set value=" + devise._valeur+" where Id="+devise._id);
+        //}
+        private void Update_Compte_Devise(Compte compte)
         {
-            Update_Comm("Update Devise set value=" + devise._valeur+" where Id="+devise._id);
+            save_new_Devise(compte._solde);
+            int c = Read_old_Devise(compte._numcompte);
+            Update_Comm("Update Compte set id_Solde =" + compte._solde._id + " where NumCompte=" + compte._numcompte);
+            Delete_Devise(c);
         }
         private int get_Devise_type(Devise devise)
         {

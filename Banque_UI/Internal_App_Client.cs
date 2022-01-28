@@ -53,15 +53,12 @@ namespace Banque_UI
         {
 
         }
-
-      
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (controller.compte_Selection != null)
             {
                 Solde_Am.Text = controller.compte_Selection._solde.ToString();
-                Transactions.Refresh();
+                Transactions.DataSource = controller.compte_Selection._transactions;
             }
         }
 

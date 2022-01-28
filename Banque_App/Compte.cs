@@ -50,7 +50,7 @@ namespace Banque_App
         {
             if (debiter(M))
             {
-                C.crediter(M);
+                C.crediter(M.Clone());
                 return true;
             }
             return false;
@@ -70,7 +70,7 @@ namespace Banque_App
         }
         protected void debiter_direct(Devise M)
         {
-            _solde -= _solde - M;
+            _solde = _solde - M;
             Add_transaction(M, false);
         }
         public void Add_transaction(Devise Amount, bool Type)

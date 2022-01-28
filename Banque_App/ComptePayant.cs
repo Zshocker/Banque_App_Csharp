@@ -27,9 +27,12 @@ namespace Banque_App
         {
             Devise devise1 = devise.Clone() * 0.05;
             if (!check_Solde_sup(devise + devise1)) return false;
-            debiter_direct(devise);
-            debiter_direct(devise1);
-            return true;
+            bool a=base.debiter(devise);
+            if (a) { 
+                debiter_direct(devise1);
+                return true;
+            }
+            return false;
         }
     }
 }

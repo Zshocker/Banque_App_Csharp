@@ -17,13 +17,13 @@ namespace Money
         }
         public Devise(int id,double valeur)
         {
-            if (id > incr) incr = id;
+            if (id >= incr) incr = id+1;
             this._id = id;
             this._valeur = valeur;
         }
         public Devise(Devise devise)
         {
-            _id = devise._id;
+
             this._valeur = devise._valeur;
         }
         public abstract Devise Clone();

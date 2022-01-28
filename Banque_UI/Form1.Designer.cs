@@ -36,7 +36,7 @@ namespace Banque_UI
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(173, 208);
+            this.button1.Location = new System.Drawing.Point(100, 192);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -46,7 +46,7 @@ namespace Banque_UI
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(85, 78);
+            this.textBox1.Location = new System.Drawing.Point(54, 67);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(163, 20);
             this.textBox1.TabIndex = 1;
@@ -55,17 +55,17 @@ namespace Banque_UI
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(85, 135);
+            this.textBox2.Location = new System.Drawing.Point(54, 132);
             this.textBox2.Name = "textBox2";
+            this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(163, 20);
             this.textBox2.TabIndex = 2;
-            this.textBox2.Text = "Password";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(292, 280);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
